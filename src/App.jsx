@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import UserManager from 'UserManager';
 
 export default () => (
-  <React.Fragment>
-    Page intentionally left blank
-  </React.Fragment>
+  <Fragment>
+    <UserManager />
+  </Fragment>
 );
