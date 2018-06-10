@@ -1,5 +1,5 @@
 import './spec';
 
 it('renders without crashing', () => {
-  expect(page).toBeDefined();
+  expect(page.isRendered).toBe(true);
 });

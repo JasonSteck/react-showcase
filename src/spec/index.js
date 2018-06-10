@@ -1,34 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Page from './Page.jsx'
 import App from '../App';
 
-global.page = null;
-
-global.render = () => {
-  if(page !== null) {
-    throw new Error("Tried to render the app twice! (fyi: you can only render in a beforeEach)");
-  }
-  page = document.createElement('div');
-  ReactDOM.render(<App />, page);
-};
-
-global.cleanup = () => {
-  if(page !== null) {
-    ReactDOM.unmountComponentAtNode(page);
-    page = null;
-  }
-}
+global.page = new Page(<App />);
 
 const _it = global.it;
 global.it = function(desc, func) {
   return _it(desc, () => {
-    if(page === null) {
-      render()
+    if(!page.isRendered) {
+      page.render()
     }
     return func();
   });
 }
 
 afterEach(function() {
-  cleanup();
+  page.cleanup();
 });
