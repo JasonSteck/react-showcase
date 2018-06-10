@@ -11,6 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "debug": "react-scripts --inspect-brk test --env=jsdom --runInBand",
     "eject": "react-scripts eject"
   }
 }
