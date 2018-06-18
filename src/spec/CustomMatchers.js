@@ -1,14 +1,18 @@
 export class CustomMatchers {}
 
+let initialized = false;
 export function InitCustomMatchers() {
+  if(initialized) return false;
+
   global._expect = global.expect;
   global._expect.extend({
     result(_, arg) { // allows us to manually pass or fail a test
       return arg;
     }
   });
-
   global.expect = actual => new CustomExpectationWrapper(actual);
+
+  return initialized = true;
 }
 
 export function hasCustomMatchers(target) {
