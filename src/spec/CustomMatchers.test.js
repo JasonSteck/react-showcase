@@ -4,6 +4,7 @@ class Thing extends CustomMatchers {
   constructor(val) {
     super();
     this.val = val;
+    this.toHaveArrowFunction = () => true
   }
 
   doubleVal() {
@@ -60,6 +61,11 @@ describe('Custom  Matchers', () => {
       const t = new Thing(3);
       t.doubleVal();
       expect(t).not.toBe4();
+    });
+
+    it('can use instance functions as matchers', () => {
+      const t = new Thing(8);
+      expect(t).toHaveArrowFunction();
     });
   });
 

@@ -61,6 +61,13 @@ class CustomExpectationWrapper {
 // inspired by https://stackoverflow.com/a/40577337
 function getMatcherNames(obj) {
   let methods = new Set();
+  // get all instance functions on object
+  for(let prop in obj) {
+    if(typeof obj[prop] === 'function') {
+      methods.add(prop)
+    }
+  }
+  // get all methods along prototype chain
   while (obj = getNonObjectProto(obj)) {
     let keys = Reflect.ownKeys(obj)
     keys.forEach(k => methods.add(k));
